@@ -1,0 +1,130 @@
+{
+  "name": "myapp2",
+  "$schema": "node_modules/nx/schemas/project-schema.json",
+  "includedScripts": [],
+  "projectType": "application",
+  "prefix": "app",
+  "sourceRoot": "./src",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@angular-architects/native-federation:build",
+      "options": {},
+      "configurations": {
+        "production": {
+          "target": "myapp2:esbuild:production"
+        },
+        "development": {
+          "target": "myapp2:esbuild:development",
+          "dev": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-architects/native-federation:build",
+      "options": {
+        "target": "myapp2:serve-original:development",
+        "rebuildDelay": 0,
+        "dev": true,
+        "port": 4201
+      }
+    },
+    "extract-i18n": {
+      "executor": "@angular/build:extract-i18n",
+      "options": {
+        "buildTarget": "myapp2:build"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": [
+          "./src"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": [
+        "{workspaceRoot}/coverage/{projectName}"
+      ],
+      "options": {
+        "jestConfig": "jest.config.ts",
+        "tsConfig": "tsconfig.spec.json"
+      }
+    },
+    "serve-static": {
+      "continuous": true,
+      "executor": "@nx/web:file-server",
+      "options": {
+        "buildTarget": "myapp2:build",
+        "staticFilePath": "dist/myapp2/browser",
+        "spa": true
+      }
+    },
+    "esbuild": {
+      "executor": "@angular/build:application",
+      "outputs": [
+        "{options.outputPath}"
+      ],
+      "options": {
+        "outputPath": "dist/myapp2",
+        "browser": "./src/main.ts",
+        "polyfills": [
+          "zone.js"
+        ],
+        "tsConfig": "tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": [
+          {
+            "glob": "**/*",
+            "input": "public"
+          }
+        ],
+        "styles": [
+          "./src/styles.scss"
+        ]
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "4kb",
+              "maximumError": "8kb"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "optimization": false,
+          "extractLicenses": false,
+          "sourceMap": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-original": {
+      "continuous": true,
+      "executor": "@angular/build:dev-server",
+      "configurations": {
+        "production": {
+          "buildTarget": "myapp2:esbuild:production"
+        },
+        "development": {
+          "buildTarget": "myapp2:esbuild:development"
+        }
+      },
+      "defaultConfiguration": "development",
+      "options": {
+        "port": 4200
+      }
+    }
+  }
+}
