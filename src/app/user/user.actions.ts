@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import type { User } from '@myapp2/types';
+import { User } from '../app.config';
 
 export const login = createAction(
   '[User] Login',
