@@ -1,6 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import * as HomeActions from './home.actions';
-import { HomeState } from '../app.config';
+import { HomeState } from '.';
 
 export const initialHomeState: HomeState = {
   theme: 'light',
@@ -24,3 +24,8 @@ export const homeReducer = createReducer(
   })),
   on(HomeActions.resetSettings, () => initialHomeState)
 );
+
+export const homeFeature = createFeature({
+  name: 'home',
+  reducer: homeReducer,
+});

@@ -1,6 +1,6 @@
-import { createReducer, on } from '@ngrx/store';
+import { createFeature, createReducer, on } from '@ngrx/store';
 import * as UserActions from './user.actions';
-import { UserState } from '../app.config';
+import { UserState } from '.';
 
 export const initialUserState: UserState = {
   currentUser: null,
@@ -40,3 +40,8 @@ export const userReducer = createReducer(
     error: null,
   }))
 );
+
+export const userFeature = createFeature({
+  name: 'user',
+  reducer: userReducer,
+});
