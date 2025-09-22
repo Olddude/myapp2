@@ -1,11 +1,8 @@
-import { provideState } from '@ngrx/store';
 import { loadRemoteModule } from '@angular-architects/native-federation';
 import { Route } from '@angular/router';
-import { provideEffects } from '@ngrx/effects';
-import { HomeEffects } from './home/home.effects';
-import { homeFeature } from './home/home.reducer';
-import { userFeature } from './user/user.reducer';
-import { UserEffects } from './user/user.effects';
+
+import { userProviders } from './user';
+import { homeProviders } from './home';
 
 export const appRoutes: Route[] = [
     {
@@ -16,18 +13,12 @@ export const appRoutes: Route[] = [
     {
         path: 'home',
         loadComponent: () => import('./home/home.page').then(m => m.HomePage),
-        providers: [
-            provideState(homeFeature),
-            provideEffects([HomeEffects])
-        ]
+        providers: homeProviders
     },
     {
         path: 'user',
         loadComponent: () => import('./user/user.page').then(m => m.UserPage),
-        providers: [
-            provideState(userFeature),
-            provideEffects([UserEffects])
-        ]
+        providers: userProviders
     },
     {
         path: 'myapp',
