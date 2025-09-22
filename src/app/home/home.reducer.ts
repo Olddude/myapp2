@@ -1,12 +1,6 @@
 import { createFeature, createReducer, on } from '@ngrx/store';
 import * as HomeActions from './home.actions';
-import { HomeState } from '.';
-
-export const initialHomeState: HomeState = {
-  theme: 'light',
-  language: 'en',
-  notifications: true,
-};
+import { initialHomeState } from '.';
 
 export const homeReducer = createReducer(
   initialHomeState,

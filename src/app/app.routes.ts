@@ -31,15 +31,12 @@ export const appRoutes: Route[] = [
     },
     {
         path: 'myapp',
-        loadComponent: () => loadRemoteModule({
-            exposedModule: './App',
-            remoteName: 'myapp',
-            remoteEntry: 'http://localhost:4200/remoteEntry.js'
-        }),
-        loadChildren: () => loadRemoteModule({
-            exposedModule: './Routes',
-            remoteName: 'myapp',
-            remoteEntry: 'http://localhost:4200/remoteEntry.js'
-        })
+        loadComponent: () => loadRemoteModule('myapp', './App'),
+        loadChildren: () => loadRemoteModule('myapp', './Routes')
+    },
+    {
+        path: '**',
+        loadComponent: () => import('./not-found/not-found.page')
+            .then(m => m.NotFoundPage)
     }
 ];
