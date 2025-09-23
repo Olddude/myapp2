@@ -22,8 +22,16 @@ export const appRoutes: Route[] = [
     },
     {
         path: 'myapp',
-        loadComponent: () => loadRemoteModule('myapp', './App'),
-        loadChildren: () => loadRemoteModule('myapp', './Routes')
+        loadComponent: () => loadRemoteModule({
+            remoteEntry: 'http://localhost:4200/remoteEntry.json',
+            remoteName: 'myapp',
+            exposedModule: './App'
+        }),
+        loadChildren: () => loadRemoteModule({
+            remoteEntry: 'http://localhost:4200/remoteEntry.json',
+            remoteName: 'myapp',
+            exposedModule: './Routes'
+        })
     },
     {
         path: '**',
