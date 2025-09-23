@@ -1,17 +1,17 @@
 import { createAction, props } from '@ngrx/store';
 
 export const setTheme = createAction(
-  '[Home] Set Theme',
+  '[MYAPP2] [Home] Set Theme',
   props<{ theme: 'light' | 'dark' }>()
 );
 
 export const setLanguage = createAction(
-  '[Home] Set Language',
+  '[MYAPP2] [Home] Set Language',
   props<{ language: string }>()
 );
 
 export const toggleNotifications = createAction(
-  '[Home] Toggle Notifications'
+  '[MYAPP2] [Home] Toggle Notifications'
 );
 
-export const resetSettings = createAction('[Home] Reset Settings');
+export const resetSettings = createAction('[MYAPP2] [Home] Reset Settings');

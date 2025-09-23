@@ -2,25 +2,25 @@ import { createAction, props } from '@ngrx/store';
 import { User } from '.';
 
 export const login = createAction(
-  '[User] Login',
+  '[MYAPP2] [User] Login',
   props<{ email: string; password: string }>()
 );
 
 export const loginSuccess = createAction(
-  '[User] Login Success',
+  '[MYAPP2] [User] Login Success',
   props<{ user: User }>()
 );
 
 export const loginFailure = createAction(
-  '[User] Login Failure',
+  '[MYAPP2] [User] Login Failure',
   props<{ error: string }>()
 );
 
-export const logout = createAction('[User] Logout');
+export const logout = createAction('[MYAPP2] [User] Logout');
 
 export const updateUser = createAction(
-  '[User] Update User',
+  '[MYAPP2] [User] Update User',
   props<{ user: User }>()
 );
 
-export const clearError = createAction('[User] Clear Error');
+export const clearError = createAction('[MYAPP2] [User] Clear Error');

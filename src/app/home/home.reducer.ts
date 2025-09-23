@@ -20,6 +20,6 @@ export const homeReducer = createReducer(
 );
 
 export const homeFeature = createFeature({
-  name: 'home',
+  name: 'myapp2-home',
   reducer: homeReducer,
 });
